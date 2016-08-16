@@ -1,0 +1,50 @@
+#table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+#table img {
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.bateau {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    z-index: 1;
+}
+.bateau.free {
+    cursor: move;
+}
+
+.bateau.horizontal img {
+    height: 100%;
+}
+.bateau.s2.vertical img {
+    width: 200%;
+}
+.bateau.s3.vertical img {
+    width: 300%;
+}
+.bateau.s4.vertical img {
+    width: 400%;
+}
+.bateau.s5.vertical img {
+    width: 500%;
+}
+
+.bateau.vertical img {
+    transform-origin: top left;
+    -webkit-transform: rotate(90deg) translateY(-100%);
+    -moz-transform: rotate(90deg) translateY(-100%);
+    -o-transform: rotate(90deg) translateY(-100%);
+    -ms-transform: rotate(90deg) translateY(-100%);
+    transform: rotate(90deg) translateY(-100%);
+}
