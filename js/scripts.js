@@ -23,8 +23,20 @@ $(document).ready(
         });
 
         init();
+
+        $('#table').resize(onTableResized);
     }
 );
+
+var onTableResized = function() {
+    var $table = $('#table');
+    var table_size = $table.height();
+    square_size = table_size / 11;
+    resizeBoats();
+    $('.bateau').each(function(index, bateau) {
+        placeBoat($(bateau));
+    });
+};
 
 function init() {
     var $table = $('#table');
@@ -67,7 +79,7 @@ function rotateBoat($bateau) {
         $bateau.data('orientation', 'vertical');
     }
 
-    if (detectBoatOutOfTable($bateau)) {
+    if (detectBoatOutOfTable($bateau) || detectBoatsCollisions()) {
         // Undo
         if ($bateau.data('orientation') == 'vertical') {
             $bateau.data('orientation', 'horizontal');
@@ -80,9 +92,9 @@ function rotateBoat($bateau) {
     $bateau.toggleClass('vertical');
     $bateau.toggleClass('horizontal');
 
-    console.log($bateau.data());
-
     resizeBoats($bateau);
+
+    console.log($bateau.data());
 }
 
 function boatDropped($bateau, $dst) {
@@ -145,6 +157,7 @@ function placeBoat($bateau) {
         left: ($bateau.data('col') * square_size) +'px',
         top: ($bateau.data('row') * square_size) +'px'
     });
+    console.log($bateau.data());
 }
 
 function detectBoatsCollisions() {
